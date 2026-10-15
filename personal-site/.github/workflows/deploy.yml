@@ -1,0 +1,58 @@
+# =============================================================================
+# GitHub Pages 自动部署工作流
+# 触发：推送到 main 分支，或在 Actions 页面手动运行
+# 作用：把仓库里 personal-site/ 目录作为站点根目录发布到 GitHub Pages
+#
+# 使用前提：
+#   仓库 Settings → Pages → Build and deployment → Source 选择 "GitHub Actions"
+#   （首次推送后到仓库设置里选一次即可，之后每次推送都会自动重新部署）
+#
+# 如果你的站点文件直接放在仓库根目录（而不是 personal-site/ 子目录），
+# 请把下面 upload-pages-artifact 步骤里的 path 改成 "."
+# =============================================================================
+name: Deploy static site to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+# 允许工作流读写仓库内容并发布 Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 同一时间只保留一个部署任务；等待中的任务不取消
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # 纯静态站点无需构建步骤，直接把目录打包上传
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./personal-site"
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- icon-star.svg — 小星星装饰（线性、圆角端点） -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="小星星">
+  <path d="M12 3.2l2.5 5.4 5.9.7-4.4 3.9 1.2 5.8L12 16.1 6.8 19l1.2-5.8-4.4-3.9 5.9-.7z"
+    fill="#F5C77E" stroke="#E8BE7E" stroke-width="1.2" stroke-linejoin="round" />
+</svg>

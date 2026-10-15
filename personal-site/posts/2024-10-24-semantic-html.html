@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>语义化标签不是形式主义 | Terrae 的工作台</title>
+  <meta name="description" content="把 div 换成 header、nav、main、article 之后，屏幕阅读器、搜索引擎，甚至我自己的 CSS 都变好了。几个真实的重构例子。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/posts/2024-10-24-semantic-html.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="语义化标签不是形式主义 | Terrae 的工作台">
+  <meta property="og:description" content="把 div 换成语义标签之后，屏幕阅读器、搜索引擎，甚至我自己的 CSS 都变好了。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/posts/2024-10-24-semantic-html.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="../images/icon-star.svg">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../index.html">
+        <img src="../images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../projects.html">项目</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="container section">
+      <header class="page-head">
+        <h1>语义化标签不是形式主义</h1>
+        <div class="post-meta">
+          <time datetime="2024-10-24">2024 年 10 月 24 日</time>
+          <span aria-hidden="true">·</span>
+          <span class="tag">HTML</span>
+          <span class="tag">约 7 分钟</span>
+        </div>
+      </header>
+
+      <div class="prose">
+        <p>
+          我一度觉得语义化标签是"面试题知识点"：知道要用 <code>header</code>，
+          但用 <code>div</code> 写出来长得一模一样，浏览器也没意见。
+          直到我用屏幕阅读器跑了一遍自己的页面，才发现这两者根本不是一回事。
+        </p>
+
+        <h2>一锅 div 汤</h2>
+        <p>我早期的页面结构大概是这样：</p>
+        <pre><code>&lt;div class="top"&gt;
+  &lt;div class="logo"&gt;Terrae&lt;/div&gt;
+  &lt;div class="links"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="content"&gt;
+  &lt;div class="post"&gt;
+    &lt;div class="title"&gt;标题&lt;/div&gt;
+    &lt;div class="text"&gt;正文&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <p>
+          视觉上完全没问题。但在屏幕阅读器里，用户没法"跳到主导航"、
+          没法"跳到主要内容"，也没法按标题在文章之间跳转——因为这些结构在无障碍树里
+          根本不存在，全都是一串没有名字的容器。
+        </p>
+
+        <h2>换成标签之后发生了什么</h2>
+        <p>同样的页面换成语义标签之后，多了几样看不见但很有用的东西：</p>
+        <ul>
+          <li>屏幕阅读器会出现"地标"导航，用户可以一键在主内容、导航、页脚之间跳转。</li>
+          <li><code>h1</code> 到 <code>h3</code> 构成大纲，用户可以只靠标题浏览全文。</li>
+          <li>搜索引擎能分清哪部分是正文，哪部分是导航和页脚。</li>
+          <li><code>time</code> 标签的 <code>datetime</code> 属性让机器读得懂日期，这是无语义 <code>span</code> 做不到的。</li>
+        </ul>
+
+        <h2>意外收获：CSS 也变干净了</h2>
+        <p>
+          这是我最没想到的一点。当结构用上 <code>&lt;article&gt;</code>、
+          <code>&lt;nav&gt;</code> 之后，类名开始变少：
+          <code>div.post-wrapper &gt; div.post-title</code> 这种又长又脆的选择器，
+          可以直接换成 <code>.post h2</code>。
+        </p>
+        <p>
+          我的经验是，类名爆炸往往是无语义结构的下游症状：
+          因为没有标签能表达"这是文章标题"，只能靠类名去补。
+        </p>
+
+        <h2>怎么开始：从三个标签开始</h2>
+        <ol>
+          <li>页面主内容外面套 <code>&lt;main&gt;</code>，并给它一个 <code>id</code>，然后在页面最开头加一个"跳到主要内容"的链接。这是投入产出比最高的一条。</li>
+          <li>导航链接列表外面套 <code>&lt;nav&gt;</code>，并写一个 <code>aria-label</code> 说明这是主导航还是页脚导航（一个页面上有多个 <code>nav</code> 时必须区分）。</li>
+          <li>每篇独立的文章用 <code>&lt;article&gt;</code>，文章标题用 <code>h2</code> 或 <code>h3</code>，不要为了字号去选标题层级——层级是结构，字号是样式，用 CSS 调字号。</li>
+        </ol>
+        <p>
+          最后补一句：语义标签不是"用了就无障碍达标"。
+          <code>main</code> 和 <code>nav</code> 用得再标准，
+          如果一个图标按钮没有 <code>aria-label</code>，键盘用户依然不知道它是什么。
+          但语义化是那个成本最低的地基——它只有一次性的改动成本，之后一直有效。
+        </p>
+      </div>
+
+      <p class="post-back">
+        <a href="../blog.html">← 返回博客列表</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="../images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="../projects.html">项目</a></li>
+          <li><a href="../blog.html">博客</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

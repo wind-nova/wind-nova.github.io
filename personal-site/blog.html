@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>博客 | Terrae 的工作台</title>
+  <meta name="description" content="Terrae 的博客列表：前端笔记、CSS 变量与主题实践、可访问性思考，以及一些关于写代码日常的随笔。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/blog.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="博客 | Terrae 的工作台">
+  <meta property="og:description" content="前端笔记、CSS 变量与主题实践、可访问性思考，以及一些关于写代码日常的随笔。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/blog.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="images/icon-star.svg">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 首屏前应用主题，避免闪烁 -->
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ================= 导航栏 ================= -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html">
+        <img src="images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="about.html">关于</a>
+        <a href="projects.html">项目</a>
+        <a href="blog.html" aria-current="page">博客</a>
+        <a href="contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 主内容 ================= -->
+  <main id="main">
+    <section class="container page-head" aria-labelledby="page-title">
+      <h1 id="page-title">博客</h1>
+      <p>
+        一些关于前端的笔记，和一些不太技术的想法。点标题就能读全文，
+        每篇都是 <code>posts/</code> 目录下的一个 HTML 文件。
+      </p>
+    </section>
+
+    <section class="container section" aria-label="文章列表">
+      <ul class="post-list" role="list">
+        <li>
+          <article class="post-item">
+            <div class="post-meta">
+              <time datetime="2025-03-18">2025 年 3 月 18 日</time>
+              <span aria-hidden="true">·</span>
+              <span class="tag">CSS</span>
+              <span class="tag">约 8 分钟</span>
+            </div>
+            <h2><a href="posts/2025-03-18-css-color-system.html">用 CSS 变量搭一套会长大的配色系统</a></h2>
+            <p class="text-small">
+              从三个颜色开始，慢慢长出一整套浅色 / 深色主题。重点不是颜色多好看，
+              而是每个颜色都有名字、有用途、改起来不心疼。文章里会给出完整的变量清单与命名思路。
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="post-item">
+            <div class="post-meta">
+              <time datetime="2025-02-02">2025 年 2 月 2 日</time>
+              <span aria-hidden="true">·</span>
+              <span class="tag">可访问性</span>
+              <span class="tag">约 6 分钟</span>
+            </div>
+            <h2><a href="posts/2025-02-02-prefers-reduced-motion.html">动效要有礼貌：prefers-reduced-motion 实践笔记</a></h2>
+            <p class="text-small">
+              会动的界面很好看，但有些人真的会被晃到。用一行媒体查询，让动效变成可选项。
+              顺带聊聊哪些属性值得做动画，哪些只会让浏览器掉帧。
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="post-item">
+            <div class="post-meta">
+              <time datetime="2025-01-09">2025 年 1 月 9 日</time>
+              <span aria-hidden="true">·</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">约 10 分钟</span>
+            </div>
+            <h2><a href="posts/2025-01-09-no-build-personal-site.html">不写构建工具的个人网站，能撑多久？</a></h2>
+            <p class="text-small">
+              没有打包、没有依赖、没有 node_modules。我把个人站改成纯静态文件后，
+              维护成本几乎降到零，代价是几件需要手动做的事。这里把它们列清楚。
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="post-item">
+            <div class="post-meta">
+              <time datetime="2024-12-11">2024 年 12 月 11 日</time>
+              <span aria-hidden="true">·</span>
+              <span class="tag">随笔</span>
+              <span class="tag">约 5 分钟</span>
+            </div>
+            <h2><a href="posts/2024-12-11-fourth-rewrite.html">为什么我把个人网站重写了第四次</a></h2>
+            <p class="text-small">
+              每一次重写都不是因为技术变强了，而是因为更清楚自己想说什么了。
+              第四次之后，我终于满意于「少」。
+            </p>
+          </article>
+        </li>
+
+        <li>
+          <article class="post-item">
+            <div class="post-meta">
+              <time datetime="2024-10-24">2024 年 10 月 24 日</time>
+              <span aria-hidden="true">·</span>
+              <span class="tag">HTML</span>
+              <span class="tag">约 7 分钟</span>
+            </div>
+            <h2><a href="posts/2024-10-24-semantic-html.html">语义化标签不是形式主义</a></h2>
+            <p class="text-small">
+              把 div 换成 header、nav、main、article 之后，屏幕阅读器、搜索引擎、
+              甚至我自己的 CSS 都变好了。举几个真实的重构例子。
+            </p>
+          </article>
+        </li>
+      </ul>
+
+      <p class="text-small">
+        还想看别的话题？<a href="contact.html">告诉我</a>，或者直接订阅更新（暂时只能靠常来逛逛）。
+      </p>
+    </section>
+
+    <div class="container">
+      <ul class="dot-divider" aria-hidden="true">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </main>
+
+  <!-- ================= 页脚 ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="about.html">关于</a></li>
+          <li><a href="projects.html">项目</a></li>
+          <li><a href="blog.html">博客</a></li>
+          <li><a href="contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

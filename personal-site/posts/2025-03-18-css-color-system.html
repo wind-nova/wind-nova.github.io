@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用 CSS 变量搭一套会长大的配色系统 | Terrae 的工作台</title>
+  <meta name="description" content="从三个颜色开始，长出一整套浅色与深色主题：命名比取值重要，深色主题也不是把颜色反过来。附一份可以直接照抄的变量清单。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/posts/2025-03-18-css-color-system.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="用 CSS 变量搭一套会长大的配色系统 | Terrae 的工作台">
+  <meta property="og:description" content="从三个颜色开始，长出一整套浅色与深色主题：命名比取值重要。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/posts/2025-03-18-css-color-system.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="../images/icon-star.svg">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../index.html">
+        <img src="../images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../projects.html">项目</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="container section">
+      <header class="page-head">
+        <h1>用 CSS 变量搭一套会长大的配色系统</h1>
+        <div class="post-meta">
+          <time datetime="2025-03-18">2025 年 3 月 18 日</time>
+          <span aria-hidden="true">·</span>
+          <span class="tag">CSS</span>
+          <span class="tag">约 8 分钟</span>
+        </div>
+      </header>
+
+      <div class="prose">
+        <p>
+          我做过的第一个网站的样式表是这样的：见到一个好看的颜色就写一个十六进制值，
+          同一个蓝色在文件里出现了十一次，每次都略有不同。三个月后我想把主色调深一点，
+          于是用查找替换改坏了半个站点。
+        </p>
+        <p>
+          现在这个站点的颜色全部收在文件顶部的两段变量里。改配色从"一次高风险手术"
+          变成了"改三行然后刷新"。
+        </p>
+
+        <h2>从三个颜色开始</h2>
+        <p>
+          不要一开始就列出三十个变量。先只定三个：背景、正文文字、主色。
+          剩下的颜色都从这三个里派生出来——次要文字是正文色的降饱和版本，
+          边框是背景色的加深版本。这样配色天然是和谐的，因为你只做了三个决定。
+        </p>
+        <p>这套站点现在长这样，两套主题各写一遍同样的名字，只是取值不同：</p>
+        <pre><code>:root {
+  --color-bg:      #fdfbf7;
+  --color-text:    #3d3a38;
+  --color-primary: #7eb8c9;
+}
+
+[data-theme="dark"] {
+  --color-bg:      #1f1d1b;
+  --color-text:    #ede8e0;
+  --color-primary: #8fc9d9;
+}</code></pre>
+
+        <h2>命名比取值重要</h2>
+        <p>
+          变量名里不要出现具体颜色。<code>--color-blue</code> 是坏名字，
+          因为半年后你可能把它改成绿色，那时候整个代码库都在说谎。
+          用用途命名：<code>--color-primary</code>、<code>--color-border</code>、
+          <code>--color-text-secondary</code>。
+        </p>
+        <ul>
+          <li>坏名字：<code>--light-gray</code>、<code>--big-blue</code>、<code>--color-2</code></li>
+          <li>好名字：<code>--color-bg</code>、<code>--color-card</code>、<code>--color-border</code></li>
+          <li>判断标准：把值换成完全不同的颜色，名字是否依然成立</li>
+        </ul>
+
+        <h2>深色主题不是把颜色反过来</h2>
+        <p>
+          最省事的做法是把浅色主题的每个值取反，结果是刺眼的纯黑背景配纯白文字，
+          看五分钟眼睛就累了。深色主题应该重新做一次三个决定：
+        </p>
+        <ul>
+          <li>背景不要用 <code>#000</code>，用带一点暖调的深灰，比如 <code>#1f1d1b</code>。</li>
+          <li>正文不要用 <code>#fff</code>，稍微压暗一点，比如 <code>#ede8e0</code>，对比度依然远超标线但没那么扎眼。</li>
+          <li>主色要提亮一档。同一个蓝在浅色背景上正好，在深色背景上会显得发暗。</li>
+          <li>阴影要换成深的、透明度更高的黑，浅色主题那套暖灰阴影在深色下完全看不见。</li>
+        </ul>
+
+        <blockquote>
+          <p>改配色时只改变量，不要在组件样式里写死颜色。一旦某个按钮写了 <code>#7eb8c9</code>，
+          它就会成为下一次改配色时唯一没跟着变的地方。</p>
+        </blockquote>
+
+        <h2>一张可以照抄的清单</h2>
+        <p>如果你要重做一套配色，可以按这个顺序来，每一步都能立刻在浏览器里看到结果：</p>
+        <ol>
+          <li>定背景、正文、主色三个值。</li>
+          <li>补出次要文字色和边框色。</li>
+          <li>补出卡片色（通常就是浅色主题下的纯白、深色主题下的背景加亮一档）。</li>
+          <li>写阴影变量，浅色用低透明度的暖灰，深色用高透明度的黑。</li>
+          <li>派生两三个"主色柔化版"：十分之一透明度的底色、用于 focus 圆环的半透明色。</li>
+          <li>把全站的颜色换成引用变量，然后搜一遍十六进制值——理想情况下，它们只应该出现在文件顶部。</li>
+        </ol>
+        <p>
+          最后一条是检验这套系统有没有真正落地的唯一标准：如果样式表中间还能搜到
+          <code>#</code> 开头的颜色值，说明还有一个组件没被收编。
+        </p>
+      </div>
+
+      <p class="post-back">
+        <a href="../blog.html">← 返回博客列表</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="../images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="../projects.html">项目</a></li>
+          <li><a href="../blog.html">博客</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

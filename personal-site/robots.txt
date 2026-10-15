@@ -1,0 +1,10 @@
+# robots.txt — 允许所有爬虫抓取，并指向站点地图
+# 部署前请把下面的域名替换成你自己的 GitHub Pages 地址
+
+User-agent: *
+Allow: /
+
+# 文章模板只是写作时的蓝本，不该出现在搜索结果里
+Disallow: /posts/_template.html
+
+Sitemap: https://your-username.github.io/personal-site/sitemap.xml

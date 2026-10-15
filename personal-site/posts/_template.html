@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ▼ 1. 改页面标题（浏览器标签页和搜索结果都显示它） -->
+  <title>文章标题 | Terrae 的工作台</title>
+  <!-- ▼ 2. 改描述（150 字以内，会出现在搜索结果摘要里） -->
+  <meta name="description" content="这里写这篇文章的一句话摘要。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <!-- ▼ 3. 改 canonical 与下面 4 个 og 标签里的文件名（部署前记得把 your-username 换成你的真实地址） -->
+  <link rel="canonical" href="https://your-username.github.io/personal-site/posts/文件名.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="文章标题 | Terrae 的工作台">
+  <meta property="og:description" content="这里写这篇文章的一句话摘要。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/posts/文件名.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <!-- 模板页不允许被搜索引擎收录（robots.txt 里也做了屏蔽） -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/svg+xml" href="../images/icon-star.svg">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <!-- 首屏前应用主题，避免闪烁（这段必须保留、必须内联） -->
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ================= 导航栏（正文页注意：路径要带 ../，且不设 aria-current） ================= -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../index.html">
+        <img src="../images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../projects.html">项目</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 正文 ================= -->
+  <main id="main">
+    <article class="container section">
+      <header class="page-head">
+        <!-- ▼ 4. 改标题 -->
+        <h1>文章标题</h1>
+        <div class="post-meta">
+          <!-- ▼ 5. 改日期：datetime 用 YYYY-MM-DD，显示文字用中文日期 -->
+          <time datetime="2025-01-01">2025 年 1 月 1 日</time>
+          <span aria-hidden="true">·</span>
+          <span class="tag">标签</span>
+          <span class="tag">约 X 分钟</span>
+        </div>
+      </header>
+
+      <!-- ▼ 6. 这里是正文。可用的元素有：h2 / h3 / p / ul / ol / pre+code / blockquote / hr / a -->
+      <div class="prose">
+        <p>开头段落。</p>
+
+        <h2>小标题</h2>
+        <p>段落内容。</p>
+
+        <ul>
+          <li>列表项</li>
+          <li>列表项</li>
+        </ul>
+      </div>
+
+      <p class="post-back">
+        <a href="../blog.html">← 返回博客列表</a>
+      </p>
+    </article>
+  </main>
+
+  <!-- ================= 页脚 ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="../images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="../projects.html">项目</a></li>
+          <li><a href="../blog.html">博客</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

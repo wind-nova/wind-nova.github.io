@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>不写构建工具的个人网站，能撑多久？ | Terrae 的工作台</title>
+  <meta name="description" content="没有打包、没有依赖、没有 node_modules。把个人站改成纯静态文件后，维护成本几乎降到零，代价是几件必须手动做的事。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/posts/2025-01-09-no-build-personal-site.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="不写构建工具的个人网站，能撑多久？ | Terrae 的工作台">
+  <meta property="og:description" content="零构建的代价是几件必须手动做的事，这里把它们列清楚。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/posts/2025-01-09-no-build-personal-site.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="../images/icon-star.svg">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../index.html">
+        <img src="../images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../projects.html">项目</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="container section">
+      <header class="page-head">
+        <h1>不写构建工具的个人网站，能撑多久？</h1>
+        <div class="post-meta">
+          <time datetime="2025-01-09">2025 年 1 月 9 日</time>
+          <span aria-hidden="true">·</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">约 10 分钟</span>
+        </div>
+      </header>
+
+      <div class="prose">
+        <p>
+          这个站点没有 <code>package.json</code>，没有 <code>node_modules</code>，
+          没有打包器，也没有任何需要"运行"才能看到结果的东西。
+          你双击任何一个 HTML 文件，浏览器就会把它渲染出来——和 2005 年一样。
+        </p>
+        <p>
+          这不是怀旧，是一次有意的取舍。我想知道：如果一个静态站点坚持不引入构建步骤，
+          到底会在哪里卡住。
+        </p>
+
+        <h2>我放弃了什么</h2>
+        <ul>
+          <li><strong>模板复用。</strong>导航和页脚在五个页面里各写了一份。改一个链接要动五个文件。</li>
+          <li><strong>自动化的内容管线。</strong>文章列表是手写的，新增一篇要手动更新三处。</li>
+          <li><strong>语法降级与压缩。</strong>我写什么代码，浏览器就收到什么代码。</li>
+          <li><strong>依赖生态。</strong>没有 Markdown 渲染、没有代码高亮、没有图标库。</li>
+        </ul>
+
+        <h2>我得到了什么</h2>
+        <ul>
+          <li><strong>零维护成本。</strong>没有依赖更新、没有安全公告、没有构建失败的红色叉。三年后打开它，它还是能跑。</li>
+          <li><strong>极快的反馈循环。</strong>改一行 CSS，刷新就看到了。中间没有等待编译的几秒钟。</li>
+          <li><strong>真正的可移植性。</strong>这个目录丢进任何一台服务器、U 盘、甚至邮件附件都能用。</li>
+          <li><strong>学得更扎实。</strong>没有框架兜底之后，我才真正搞清楚 <code>backdrop-filter</code> 的兼容性边界、CSS 变量的继承规则、以及表单校验到底该由谁负责。</li>
+        </ul>
+
+        <h2>需要手动做的四件事</h2>
+        <ol>
+          <li>新增页面时，把导航和页脚复制过去，并修正子目录页面的相对路径（<code>../css/style.css</code> 这一级最容易漏）。</li>
+          <li>新增文章时，同步更新文章列表页、首页的"最近三条"、以及 <code>sitemap.xml</code>。</li>
+          <li>首屏主题脚本要在每个页面的 <code>&lt;head&gt;</code> 里内联一份。外链脚本做不到"在首次绘制前生效"，会闪一下白底。</li>
+          <li>改公共样式时，用编辑器的跨文件替换，而不是逐个文件手改。</li>
+        </ol>
+
+        <h2>什么时候该放弃零构建</h2>
+        <p>我的判断标准是三条，任意一条成立就该引入工具：</p>
+        <ul>
+          <li>页面数量超过十几个，复制导航开始频繁出错。</li>
+          <li>写作频率高到"手动同步三处列表"已经让你不想写了。</li>
+          <li>你需要多人协作或非技术人员投稿（那基本就是上 CMS 的信号）。</li>
+        </ul>
+        <p>
+          目前这三条我一条都不满足。五个页面、一个月一两篇、只有我自己写——
+          手动的成本远低于引入构建之后要长期背负的复杂度。
+        </p>
+
+        <blockquote>
+          <p>工具的价值不在于它有多强大，而在于它替你承担的那部分复杂度，
+          是否大于它本身带来的复杂度。</p>
+        </blockquote>
+      </div>
+
+      <p class="post-back">
+        <a href="../blog.html">← 返回博客列表</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="../images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="../projects.html">项目</a></li>
+          <li><a href="../blog.html">博客</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

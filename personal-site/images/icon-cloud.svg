@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- icon-cloud.svg — 小云朵装饰 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="小云朵">
+  <path d="M7.5 18h9.2a3.8 3.8 0 0 0 .5-7.6 5.2 5.2 0 0 0-9.9-1.6A3.9 3.9 0 0 0 7.5 18z"
+    fill="#FFFFFF" stroke="#7EB8C9" stroke-width="1.4" stroke-linejoin="round" />
+  <path d="M9.5 14.6h5" fill="none" stroke="#7EB8C9" stroke-width="1.2" stroke-linecap="round" opacity="0.7" />
+</svg>

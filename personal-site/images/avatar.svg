@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- avatar.svg — 简约卡通头像：圆脸、简单五官、腮红 -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="卡通头像">
+  <defs>
+    <clipPath id="avatarClip">
+      <circle cx="120" cy="120" r="112" />
+    </clipPath>
+    <linearGradient id="avatarBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FDF6EC" />
+      <stop offset="100%" stop-color="#EAF3F6" />
+    </linearGradient>
+  </defs>
+
+  <!-- 圆形底色 -->
+  <circle cx="120" cy="120" r="112" fill="url(#avatarBg)" />
+  <circle cx="120" cy="120" r="112" fill="none" stroke="#EDE8E0" stroke-width="2" />
+
+  <g clip-path="url(#avatarClip)">
+    <!-- 背景小云朵 -->
+    <g fill="#FFFFFF" opacity="0.75">
+      <ellipse cx="60" cy="52" rx="26" ry="15" />
+      <ellipse cx="82" cy="46" rx="18" ry="12" />
+      <ellipse cx="186" cy="70" rx="22" ry="13" />
+    </g>
+
+    <!-- 头发：后层 -->
+    <path d="M120 34c-34 0-58 24-58 56 0 8 2 15 5 21l8-6-3 14 12-8-1 12 10-7 2 10 13-9 2 9 12-9 8 10 4-10 12 9 2-9 13 9 2-10 10 7-1-12 12 8-3-14 8 6c3-6 5-13 5-21 0-32-24-56-58-56z"
+      fill="#5C5450" />
+
+    <!-- 耳朵 -->
+    <ellipse cx="52" cy="128" rx="9" ry="13" fill="#F6D9C7" />
+    <ellipse cx="188" cy="128" rx="9" ry="13" fill="#F6D9C7" />
+
+    <!-- 脸 -->
+    <path d="M120 58c-30 0-50 22-50 52 0 34 22 62 50 62s50-28 50-62c0-30-20-52-50-52z"
+      fill="#FBE4D5" />
+
+    <!-- 前发刘海 -->
+    <path d="M120 42c-30 0-52 20-54 48 10-14 22-20 32-16 8 3 12 10 22 10s14-7 22-10c10-4 22 2 32 16-2-28-24-48-54-48z"
+      fill="#5C5450" />
+
+    <!-- 眉毛 -->
+    <path d="M94 108c4-3 9-3 13 0" fill="none" stroke="#6B625D" stroke-width="3" stroke-linecap="round" />
+    <path d="M133 108c4-3 9-3 13 0" fill="none" stroke="#6B625D" stroke-width="3" stroke-linecap="round" />
+
+    <!-- 眼睛 -->
+    <ellipse cx="101" cy="122" rx="7" ry="8.5" fill="#4A423E" />
+    <ellipse cx="139" cy="122" rx="7" ry="8.5" fill="#4A423E" />
+    <circle cx="103.5" cy="119.5" r="2.4" fill="#FFFFFF" />
+    <circle cx="141.5" cy="119.5" r="2.4" fill="#FFFFFF" />
+
+    <!-- 腮红 -->
+    <ellipse cx="80" cy="138" rx="12" ry="7.5" fill="#F2B5C4" opacity="0.55" />
+    <ellipse cx="160" cy="138" rx="12" ry="7.5" fill="#F2B5C4" opacity="0.55" />
+
+    <!-- 嘴巴：小小的微笑 -->
+    <path d="M112 141c2.6 4 13.4 4 16 0" fill="none" stroke="#B9727F" stroke-width="3" stroke-linecap="round" />
+
+    <!-- 衣领 -->
+    <path d="M62 224c6-26 30-40 58-40s52 14 58 40z" fill="#7EB8C9" opacity="0.85" />
+    <path d="M120 186c8 0 14 10 14 20 0 8-6 14-14 18-8-4-14-10-14-18 0-10 6-20 14-20z"
+      fill="#FDFBF7" opacity="0.9" />
+  </g>
+</svg>

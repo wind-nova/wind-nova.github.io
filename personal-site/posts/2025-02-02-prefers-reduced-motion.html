@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>动效要有礼貌：prefers-reduced-motion 实践笔记 | Terrae 的工作台</title>
+  <meta name="description" content="会动的界面很好看，但有些人真的会被晃到。用一行媒体查询让动效变成可选项，并聊聊哪些属性值得做动画、哪些只会让浏览器掉帧。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/posts/2025-02-02-prefers-reduced-motion.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="动效要有礼貌：prefers-reduced-motion 实践笔记 | Terrae 的工作台">
+  <meta property="og:description" content="用一行媒体查询让动效变成可选项，并聊聊哪些属性值得做动画。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/posts/2025-02-02-prefers-reduced-motion.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="../images/icon-star.svg">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../index.html">
+        <img src="../images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../projects.html">项目</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="container section">
+      <header class="page-head">
+        <h1>动效要有礼貌：prefers-reduced-motion 实践笔记</h1>
+        <div class="post-meta">
+          <time datetime="2025-02-02">2025 年 2 月 2 日</time>
+          <span aria-hidden="true">·</span>
+          <span class="tag">可访问性</span>
+          <span class="tag">约 6 分钟</span>
+        </div>
+      </header>
+
+      <div class="prose">
+        <p>
+          我曾经为一个落地页做了一个很得意的首屏动画：背景缓慢放大、卡片依次浮起、
+          标题逐字淡入。上线第二天，一位同事告诉我他打开页面时会头晕，
+          所以他把系统的"减少动态效果"打开了——但我的页面完全无视这个设置。
+        </p>
+
+        <h2>谁会真的被影响</h2>
+        <p>
+          这不是少数人的洁癖。前庭功能障碍、偏头痛、内耳疾病患者对大面积位移和缩放非常敏感，
+          部分人甚至会因为一个视差滚动而恶心半天。此外还有一类很朴素的场景：
+          有人在晃动的公交上看你的页面，有人在低电量模式下希望少耗一点电。
+        </p>
+
+        <h2>一行媒体查询解决 90% 的问题</h2>
+        <p>
+          操作系统层面早就提供了开关：iOS 和 macOS 的"减弱动态效果"、Windows 的
+          "显示动画"、Android 的"移除动画"。浏览器会把它暴露给 CSS 和 JS。
+          我在这套站点的样式表末尾放了这么一段：
+        </p>
+        <pre><code>@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}</code></pre>
+        <p>
+          把时长压到接近零而不是直接 <code>display: none</code>，是因为有些组件依赖
+          <code>transitionend</code> 或 <code>animationend</code> 事件来收拾状态，
+          直接取消动画会让它们卡住。压时长既去掉了"动"，又保留了事件的触发。
+        </p>
+
+        <h2>只对三个属性做动画</h2>
+        <p>
+          另一件同样重要的事是别乱做动画。<code>transform</code>、<code>opacity</code>
+          和 <code>box-shadow</code> 之外的属性，动画起来几乎都会触发重排或重绘，
+          在手机上会立刻掉帧。最常见的错误是动 <code>width</code>、<code>height</code>、
+          <code>top</code> 和 <code>left</code>——它们看起来"只是移动一下"，
+          实际上每一帧都在重新计算整个布局。
+        </p>
+        <ul>
+          <li>要位移就动 <code>transform: translateY()</code>，不要动 <code>top</code>。</li>
+          <li>要变大就动 <code>transform: scale()</code>——但注意，这套站点刻意不用缩放做 hover，因为缩放会让人误以为元素被选中了。</li>
+          <li>要变颜色就动 <code>color</code> 或 <code>background-color</code>，这两个是安全的例外。</li>
+          <li>过渡时长控制在 0.2 到 0.3 秒之间。超过 0.5 秒的过渡在交互上会被感知为"卡"。</li>
+        </ul>
+
+        <h2>别只盯着 hover 动效</h2>
+        <p>
+          同一个偏好也应该用在 JavaScript 里。凡是自动播放的轮播、无限循环的呼吸效果、
+          滚动触发的视差，都应该先问一句 <code>matchMedia("(prefers-reduced-motion: reduce)")</code>，
+          命中就别启动。纯 CSS 的动画交给上面那段媒体查询就够了，
+          但用 JS 手动控制的循环动画不会被 CSS 拦住，需要你主动处理。
+        </p>
+
+        <blockquote>
+          <p>把动效理解成"给用户的礼物"而不是"产品的一部分"，取舍就容易多了：
+          礼物可以不送，但绝不能让人难受。</p>
+        </blockquote>
+
+        <p>
+          这套站点里保留了三个动效：按钮上浮 2 像素、卡片上浮 4 像素、头像 4 秒一次的
+          1.02 倍呼吸。它们都很轻微，而且一旦系统开了"减少动态"，就全部静止。
+        </p>
+      </div>
+
+      <p class="post-back">
+        <a href="../blog.html">← 返回博客列表</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="../images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="../projects.html">项目</a></li>
+          <li><a href="../blog.html">博客</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>

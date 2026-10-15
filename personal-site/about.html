@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>关于我 | Terrae 的工作台</title>
+  <meta name="description" content="关于 Terrae：一名前端开发者，关注设计系统、可访问性与安静的界面细节，这里是他的经历、技能与日常。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="关于我 | Terrae 的工作台">
+  <meta property="og:description" content="一名前端开发者的经历、技能与日常：设计系统、可访问性与安静的界面细节。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/about.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="images/icon-star.svg">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 首屏前应用主题，避免闪烁 -->
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ================= 导航栏 ================= -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html">
+        <img src="images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="index.html">首页</a>
+        <a href="about.html" aria-current="page">关于</a>
+        <a href="projects.html">项目</a>
+        <a href="blog.html">博客</a>
+        <a href="contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 主内容 ================= -->
+  <main id="main">
+    <section class="container page-head" aria-labelledby="page-title">
+      <h1 id="page-title">关于我</h1>
+      <p>
+        你好，我是 Terrae。白天写界面，晚上写一点自己的小东西。
+        相信好的界面应该像一张整理干净的书桌——你需要的东西都在手边，不需要的都不出现。
+      </p>
+    </section>
+
+    <section class="container section" aria-label="个人简介与经历">
+      <div class="about-layout">
+        <!-- 左：名片 -->
+        <div class="about-profile">
+          <img src="images/avatar.svg" alt="Terrae 的卡通头像：圆脸、微笑、有腮红" width="132" height="132">
+          <h2>Terrae</h2>
+          <p class="text-small">前端开发者 · 界面与设计系统</p>
+
+          <ul class="info-list" role="list">
+            <li><span class="label">现在在</span><span>杭州</span></li>
+            <li><span class="label">喜欢</span><span>留白、圆角、小动效</span></li>
+            <li><span class="label">常用</span><span>HTML / CSS / JavaScript</span></li>
+            <li><span class="label">邮箱</span><span>hello@example.com</span></li>
+          </ul>
+
+          <p><a class="btn btn-secondary" href="contact.html">联系我</a></p>
+        </div>
+
+        <!-- 右：正文 -->
+        <div>
+          <h2>我在意的事</h2>
+          <p>
+            我做前端的时间不算短，但真正让我留下来的，是那种「把一个界面调顺」的满足感：
+            段落的行高刚刚好，按钮按下去有轻微的下压，深色模式下颜色不刺眼，
+            键盘 Tab 一圈走下来每处焦点的位置都清清楚楚。
+          </p>
+          <p>
+            我尽量不用框架去搭个人项目，因为从零写一遍 CSS 能让我重新想起浏览器本来就很能干。
+            这个网站就是这样一个练习：没有构建工具，双击 <code>index.html</code> 就能看。
+          </p>
+
+          <h2>经历</h2>
+          <ol class="timeline" role="list">
+            <li>
+              <strong>高级前端工程师</strong>
+              <span class="time">2023 —— 现在</span>
+              <p class="text-small">
+                负责公司内部设计系统的组件层与文档站，把散落各处的颜色和间距收进一套令牌里。
+              </p>
+            </li>
+            <li>
+              <strong>前端工程师</strong>
+              <span class="time">2020 —— 2023</span>
+              <p class="text-small">
+                参与内容平台改版，第一次系统性地做可访问性排查，也第一次被屏幕阅读器的体验打动。
+              </p>
+            </li>
+            <li>
+              <strong>开始写前端</strong>
+              <span class="time">2018 —— 2020</span>
+              <p class="text-small">
+                从改别人的博客主题开始，慢慢学会自己写样式表和一点点 JavaScript。
+              </p>
+            </li>
+          </ol>
+
+          <h2>技能</h2>
+          <ul class="tag-list" role="list" aria-label="技能列表">
+            <li class="tag">HTML5</li>
+            <li class="tag">CSS 变量</li>
+            <li class="tag">响应式布局</li>
+            <li class="tag">JavaScript</li>
+            <li class="tag">无障碍 (a11y)</li>
+            <li class="tag">设计系统</li>
+            <li class="tag">Git / GitHub</li>
+            <li class="tag">Figma</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <ul class="dot-divider" aria-hidden="true">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <section class="container section text-center" aria-labelledby="about-cta">
+      <h2 id="about-cta">接着看点什么？</h2>
+      <p class="lead">这里有一些我做过的项目，也有一些写下来的想法。</p>
+      <p>
+        <a class="btn btn-primary" href="projects.html">项目</a>
+        <a class="btn btn-secondary" href="blog.html">博客</a>
+      </p>
+    </section>
+  </main>
+
+  <!-- ================= 页脚 ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="about.html">关于</a></li>
+          <li><a href="projects.html">项目</a></li>
+          <li><a href="blog.html">博客</a></li>
+          <li><a href="contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

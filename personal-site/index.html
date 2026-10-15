@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Terrae 的工作台 | 首页</title>
+  <meta name="description" content="Terrae 的个人网站首页：一名喜欢干净界面的前端开发者，关注可访问性、动效细节与安静的阅读体验。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Terrae 的工作台 | 首页">
+  <meta property="og:description" content="一名喜欢干净界面的前端开发者，关注可访问性、动效细节与安静的阅读体验。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/">
+  <meta property="og:locale" content="zh_CN">
+
+  <!-- 图标（复用站内 SVG，不依赖外部资源） -->
+  <link rel="icon" type="image/svg+xml" href="images/icon-star.svg">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- 首屏前应用主题，避免浅色/深色切换闪烁（必须内联并尽早执行） -->
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 存储不可用时保持默认浅色主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <!-- ================= 导航栏（全站共用，仅 aria-current 不同） ================= -->
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="index.html">
+        <img src="images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="index.html" aria-current="page">首页</a>
+        <a href="about.html">关于</a>
+        <a href="projects.html">项目</a>
+        <a href="blog.html">博客</a>
+        <a href="contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <!-- 太阳（深色主题下显示） -->
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <!-- 月亮（浅色主题下显示） -->
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= 主内容 ================= -->
+  <main id="main">
+    <!-- Hero -->
+    <section class="container hero" aria-labelledby="hero-title">
+      <div class="hero-text">
+        <h1 id="hero-title">你好，我是 Terrae</h1>
+        <p class="lead">
+          一名喜欢把界面做干净的前端开发者。我喜欢留白、圆角、柔和的颜色，
+          也喜欢在细节里藏一点小心思——比如一个会呼吸的头像，或者页脚那只睡觉的小猫。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="projects.html">看看我的项目</a>
+          <a class="btn btn-secondary" href="blog.html">读读博客</a>
+        </div>
+      </div>
+
+      <div class="hero-avatar">
+        <img src="images/avatar.svg" alt="Terrae 的卡通头像：圆脸、微笑、有腮红" width="220" height="220">
+      </div>
+    </section>
+
+    <!-- 我在做什么 -->
+    <section class="container section" aria-labelledby="focus-title">
+      <h2 class="section-title" id="focus-title">
+        <img src="images/icon-cloud.svg" alt="" width="22" height="22" aria-hidden="true">
+        我在做什么
+      </h2>
+
+      <ul class="grid grid-3">
+        <li class="card">
+          <h3>界面与设计系统</h3>
+          <p>用 CSS 变量搭一套能长期维护的设计令牌，让颜色、圆角、间距都有出处。</p>
+          <div class="card-footer">
+            <span class="tag">CSS</span>
+            <span class="tag">Design Tokens</span>
+          </div>
+        </li>
+        <li class="card">
+          <h3>可访问性</h3>
+          <p>键盘能走完整条路径、对比度达标、动效尊重系统偏好，这些是底线而不是加分项。</p>
+          <div class="card-footer">
+            <span class="tag">a11y</span>
+            <span class="tag">WCAG AA</span>
+          </div>
+        </li>
+        <li class="card">
+          <h3>安静的小工具</h3>
+          <p>做一些打开就很安静的小页面：写作台、待办清单、番茄钟，够用就好。</p>
+          <div class="card-footer">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Side Project</span>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- 最近的文章 -->
+    <section class="container section" aria-labelledby="recent-title">
+      <h2 class="section-title" id="recent-title">
+        <img src="images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        最近写的
+      </h2>
+
+      <ul class="post-list">
+        <li class="post-item">
+          <div class="post-meta">
+            <time datetime="2025-03-18">2025 年 3 月 18 日</time>
+            <span aria-hidden="true">·</span>
+            <span class="tag">CSS</span>
+          </div>
+          <h3><a href="posts/2025-03-18-css-color-system.html">用 CSS 变量搭一套会长大的配色系统</a></h3>
+          <p class="text-small">
+            从三个颜色开始，慢慢长出一整套浅色 / 深色主题。重点不是颜色多好看，
+            而是每个颜色都有名字、有用途、改起来不心疼。
+          </p>
+        </li>
+        <li class="post-item">
+          <div class="post-meta">
+            <time datetime="2025-02-02">2025 年 2 月 2 日</time>
+            <span aria-hidden="true">·</span>
+            <span class="tag">可访问性</span>
+          </div>
+          <h3><a href="posts/2025-02-02-prefers-reduced-motion.html">动效要有礼貌：prefers-reduced-motion 实践笔记</a></h3>
+          <p class="text-small">
+            会动的界面很好看，但有些人真的会被晃到。用一行媒体查询，
+            让动效变成可选项。
+          </p>
+        </li>
+        <li class="post-item">
+          <div class="post-meta">
+            <time datetime="2024-12-11">2024 年 12 月 11 日</time>
+            <span aria-hidden="true">·</span>
+            <span class="tag">随笔</span>
+          </div>
+          <h3><a href="posts/2024-12-11-fourth-rewrite.html">为什么我把个人网站重写了第四次</a></h3>
+          <p class="text-small">
+            每一次重写都不是因为技术变强了，而是因为更清楚自己想说什么了。
+          </p>
+        </li>
+      </ul>
+
+      <p><a href="blog.html">查看全部文章 →</a></p>
+    </section>
+
+    <!-- 小分隔 -->
+    <div class="container">
+      <ul class="dot-divider" aria-hidden="true">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+
+    <!-- 简短邀约 -->
+    <section class="container section text-center" aria-labelledby="cta-title">
+      <h2 id="cta-title">想聊点什么？</h2>
+      <p class="lead">不管是合作、提问，还是只想交换一个好看的小网站，都欢迎写信给我。</p>
+      <p><a class="btn btn-primary" href="contact.html">给我留言</a></p>
+    </section>
+  </main>
+
+  <!-- ================= 页脚（全站共用） ================= -->
+  <footer class="site-footer">
+    <div class="container">
+      <!-- 顶部小波浪分隔线 -->
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="about.html">关于</a></li>
+          <li><a href="projects.html">项目</a></li>
+          <li><a href="blog.html">博客</a></li>
+          <li><a href="contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

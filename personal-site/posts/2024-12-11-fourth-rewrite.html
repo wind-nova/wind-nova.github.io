@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>为什么我把个人网站重写了第四次 | Terrae 的工作台</title>
+  <meta name="description" content="每一次重写都不是因为技术变强了，而是因为更清楚自己想说什么了。第四次之后，我终于满意于「少」。">
+  <meta name="author" content="Terrae">
+  <meta name="theme-color" content="#FDFBF7">
+  <link rel="canonical" href="https://your-username.github.io/personal-site/posts/2024-12-11-fourth-rewrite.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="为什么我把个人网站重写了第四次 | Terrae 的工作台">
+  <meta property="og:description" content="每一次重写都不是因为技术变强了，而是因为更清楚自己想说什么了。">
+  <meta property="og:image" content="https://your-username.github.io/personal-site/images/avatar.svg">
+  <meta property="og:url" content="https://your-username.github.io/personal-site/posts/2024-12-11-fourth-rewrite.html">
+  <meta property="og:locale" content="zh_CN">
+
+  <link rel="icon" type="image/svg+xml" href="../images/icon-star.svg">
+  <link rel="stylesheet" href="../css/style.css">
+
+  <script>
+    (function () {
+      try {
+        var stored = window.localStorage.getItem("personal-site-theme");
+        var isDark = stored
+          ? stored === "dark"
+          : window.matchMedia("(prefers-color-scheme: dark)").matches;
+        if (isDark) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        }
+      } catch (error) {
+        /* 忽略：保持默认主题 */
+      }
+    })();
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a class="brand" href="../index.html">
+        <img src="../images/icon-star.svg" alt="" width="22" height="22" aria-hidden="true">
+        <span>Terrae 的工作台</span>
+      </a>
+
+      <nav id="site-nav" class="nav-menu" data-nav-menu aria-label="主导航">
+        <a href="../index.html">首页</a>
+        <a href="../about.html">关于</a>
+        <a href="../projects.html">项目</a>
+        <a href="../blog.html">博客</a>
+        <a href="../contact.html">联系</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle
+                aria-pressed="false" aria-label="切换到深色主题">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2"></circle>
+            <path d="M12 2.6v2.2M12 19.2v2.2M2.6 12h2.2M19.2 12h2.2M5.4 5.4l1.6 1.6M17 17l1.6 1.6M18.6 5.4L17 7M7 17l-1.6 1.6"></path>
+          </svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8z"></path>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" type="button" data-nav-toggle
+                aria-expanded="false" aria-controls="site-nav" aria-label="打开导航菜单">
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+          <span class="bar" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="container section">
+      <header class="page-head">
+        <h1>为什么我把个人网站重写了第四次</h1>
+        <div class="post-meta">
+          <time datetime="2024-12-11">2024 年 12 月 11 日</time>
+          <span aria-hidden="true">·</span>
+          <span class="tag">随笔</span>
+          <span class="tag">约 5 分钟</span>
+        </div>
+      </header>
+
+      <div class="prose">
+        <p>
+          四年里我重写了四次个人网站。技术栈没怎么变过，变的是我想让它说什么。
+        </p>
+
+        <h2>第一次：为了证明我会写代码</h2>
+        <p>
+          首页放了一段会随鼠标移动的粒子背景，导航是斜切的，滚动时元素从四个方向飞进来。
+          当时我觉得这很酷。现在回看，那是一个作品集，不是一个"我"。
+          访客要在三秒内看完那段动画，才能开始读关于我的内容——而大部分人等不了三秒。
+        </p>
+
+        <h2>第二次：为了像别人</h2>
+        <p>
+          那阵子我很喜欢几个国外的开发者博客，于是照着做了极简大字版式、等宽字体标题、
+          黑色的背景。做出来是好看的，但它像我抄来的房间：干净，却不是我的东西。
+          我在那个版本上写了不到两篇文章就不想再打开它了。
+        </p>
+
+        <h2>第三次：为了证明我什么都会</h2>
+        <p>
+          这一版塞进了暗色模式、阅读进度条、标签过滤、全文搜索、RSS、评论系统、
+          以及一个自己写的 Markdown 渲染器。功能列表很长，加载要三秒，
+          而且每次想写点东西，都会被"要不要先重构搜索"这种念头打断。
+        </p>
+        <p>我终于承认：我是在维护一个软件，而不是在经营一个角落。</p>
+
+        <h2>第四次：为了删掉</h2>
+        <p>
+          最后一版只做减法。我给自己定了四条规则，它们决定了我现在看到的样子：
+        </p>
+        <ul>
+          <li>打开的瞬间要能读到正文，没有任何东西挡住它。</li>
+          <li>不引入构建工具，双击一个 HTML 文件就能预览。</li>
+          <li>动效只能用来提示状态变化，不能用来表演。整套站点只有三处动效。</li>
+          <li>只保留三个可爱的小装饰：一个会呼吸的头像、标题旁的小云朵、页脚那只睡觉的猫。</li>
+        </ul>
+
+        <blockquote>
+          <p>每一次重写都不是因为技术变强了，而是因为更清楚自己想说什么了。</p>
+        </blockquote>
+
+        <p>
+          现在这个版本页面更少了，颜色更淡了，加载是瞬间的。而我终于愿意经常打开它，
+          往里添一点东西——这大概才是判断一个个人网站做得好不好的真正标准：
+          它是否让你想再来一次。
+        </p>
+      </div>
+
+      <p class="post-back">
+        <a href="../blog.html">← 返回博客列表</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <svg class="footer-wave" viewBox="0 0 120 12" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M2 7c6-6 12-6 18 0s12 6 18 0 12-6 18 0 12 6 18 0 12-6 18 0 12 6 18 0"></path>
+      </svg>
+
+      <img class="footer-cat" src="../images/icon-cat.svg" alt="" width="64" height="43" aria-hidden="true">
+
+      <div class="footer-inner">
+        <div>
+          <p class="footer-tagline">今天也要好好写代码呀。</p>
+          <p class="footer-copy">
+            © <span data-current-year>2025</span> Terrae · 用 HTML / CSS / JS 手工搭建
+          </p>
+        </div>
+
+        <ul class="footer-links">
+          <li><a href="../about.html">关于</a></li>
+          <li><a href="../projects.html">项目</a></li>
+          <li><a href="../blog.html">博客</a></li>
+          <li><a href="../contact.html">联系</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
