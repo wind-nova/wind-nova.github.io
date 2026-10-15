@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- sitemap.xml — 部署前请把 https://your-username.github.io/personal-site/ 替换成你的真实地址 -->
+<!-- sitemap.xml — 部署前请把 https://your-username.github.io/docs/ 替换成你的真实地址 -->
 <!-- 每新增一篇文章，在下面追加一条 <url> 即可（_template.html 不要写进来） -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://your-username.github.io/personal-site/</loc>
+    <loc>https://your-username.github.io/docs/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/about.html</loc>
+    <loc>https://your-username.github.io/docs/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/projects.html</loc>
+    <loc>https://your-username.github.io/docs/projects.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/blog.html</loc>
+    <loc>https://your-username.github.io/docs/blog.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/contact.html</loc>
+    <loc>https://your-username.github.io/docs/contact.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- 文章（按时间从新到旧） -->
   <url>
-    <loc>https://your-username.github.io/personal-site/posts/2025-03-18-css-color-system.html</loc>
+    <loc>https://your-username.github.io/docs/posts/2025-03-18-css-color-system.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/posts/2025-02-02-prefers-reduced-motion.html</loc>
+    <loc>https://your-username.github.io/docs/posts/2025-02-02-prefers-reduced-motion.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/posts/2025-01-09-no-build-personal-site.html</loc>
+    <loc>https://your-username.github.io/docs/posts/2025-01-09-no-build-personal-site.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/posts/2024-12-11-fourth-rewrite.html</loc>
+    <loc>https://your-username.github.io/docs/posts/2024-12-11-fourth-rewrite.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://your-username.github.io/personal-site/posts/2024-10-24-semantic-html.html</loc>
+    <loc>https://your-username.github.io/docs/posts/2024-10-24-semantic-html.html</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>

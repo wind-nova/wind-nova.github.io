@@ -7,4 +7,4 @@ Allow: /
 # 文章模板只是写作时的蓝本，不该出现在搜索结果里
 Disallow: /posts/_template.html
 
-Sitemap: https://your-username.github.io/personal-site/sitemap.xml
+Sitemap: https://your-username.github.io/docs/sitemap.xml

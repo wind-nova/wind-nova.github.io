@@ -23,7 +23,7 @@
 ## 二、目录结构
 
 ```
-personal-site/
+docs/
 ├── index.html              首页（Hero + 我在做什么 + 最近文章）
 ├── about.html              关于（个人简介、经历时间线、技能标签）
 ├── projects.html           项目（6 个项目卡片）
@@ -61,7 +61,7 @@ personal-site/
 
 ### 方式 2：起一个本地服务器（更接近线上环境）
 
-在 `personal-site/` 目录下任选一条命令：
+在 `docs/` 目录下任选一条命令：
 
 ```bash
 # Python 3
@@ -85,7 +85,7 @@ php -S localhost:8000
 
 ### 步骤 1：把代码推到 GitHub
 
-在项目根目录（包含 `personal-site/` 的目录）执行：
+在项目根目录（包含 `docs/` 的目录）执行：
 
 ```bash
 git init
@@ -104,7 +104,7 @@ git push -u origin main
 ### 步骤 3：等待自动部署
 
 推送之后，`.github/workflows/deploy.yml` 会自动运行：
-检出代码 → 打包 `personal-site/` 目录 → 发布到 Pages。
+检出代码 → 打包 `docs/` 目录 → 发布到 Pages。
 在仓库的 **Actions** 标签页可以看到进度，绿色的对勾表示成功。
 
 ### 步骤 4：访问站点
@@ -115,29 +115,35 @@ git push -u origin main
 https://<你的用户名>.github.io/<仓库名>/
 ```
 
-例如仓库名是 `personal-site`、用户名是 `xiaoxing`，
-地址就是 `https://xiaoxing.github.io/personal-site/`。
+例如仓库名是 `my-blog`、用户名是 `terrae`，
+地址就是 `https://terrae.github.io/my-blog/`。
+
+> 注意：`docs/` 是本仓库里**存放站点文件的文件夹名**，它不会出现在网址里；
+> 网址里的那一段是**仓库名**。两者可以完全不同，别把它们弄混。
 
 ### 部署后记得替换占位地址
 
-下面这些地方目前写的是 `https://your-username.github.io/personal-site/`，
+下面这些地方目前写的是 `https://your-username.github.io/docs/`，
 请全部替换成你的真实地址（否则分享到社交平台时缩略图不显示、站点地图也不准）：
 
 | 文件 | 需要替换的位置 |
 | --- | --- |
-| `index.html` / `about.html` / `projects.html` / `blog.html` / `contact.html` | `link rel="canonical"` 与 4 个 `og:` 标签 |
+| `index.html` / `about.html` / `projects.html` / `blog.html` / `contact.html` | `link rel="canonical"` 与 `og:image`、`og:url` |
+| `posts/` 下的每一篇文章（含 `_template.html`） | 同上 |
 | `robots.txt` | `Sitemap:` 一行 |
 | `sitemap.xml` | 全部 `<loc>` |
 
+一共是 11 个 HTML 文件里的 33 处地址，用一次全局替换就能改完。
+
 > 小技巧：用编辑器的「在文件中查找并替换」一次性替换整个目录里的
-> `https://your-username.github.io/personal-site` 即可。
+> `https://your-username.github.io/docs` 即可。
 
 ### 如果想让站点文件放在仓库根目录
 
-把 `personal-site/` 里的内容移动到仓库根目录，然后把 `deploy.yml` 中的
+把 `docs/` 里的内容移动到仓库根目录，然后把 `deploy.yml` 中的
 
 ```yaml
-          path: "./personal-site"
+          path: "./docs"
 ```
 
 改成

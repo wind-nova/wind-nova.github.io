@@ -1,13 +1,13 @@
 # =============================================================================
 # GitHub Pages 自动部署工作流
 # 触发：推送到 main 分支，或在 Actions 页面手动运行
-# 作用：把仓库里 personal-site/ 目录作为站点根目录发布到 GitHub Pages
+# 作用：把仓库里 docs/ 目录作为站点根目录发布到 GitHub Pages
 #
 # 使用前提：
 #   仓库 Settings → Pages → Build and deployment → Source 选择 "GitHub Actions"
 #   （首次推送后到仓库设置里选一次即可，之后每次推送都会自动重新部署）
 #
-# 如果你的站点文件直接放在仓库根目录（而不是 personal-site/ 子目录），
+# 如果你的站点文件直接放在仓库根目录（而不是 docs/ 子目录），
 # 请把下面 upload-pages-artifact 步骤里的 path 改成 "."
 # =============================================================================
 name: Deploy static site to GitHub Pages
@@ -43,7 +43,7 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: "./personal-site"
+          path: "./docs"
 
   deploy:
     name: Deploy
