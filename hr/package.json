@@ -1,0 +1,16 @@
+{
+  "name": "save-the-sheep",
+  "version": "1.0.0",
+  "private": true,
+  "description": "救羊出圈 · 移动端优先的软萌动物华容道",
+  "scripts": {
+    "start": "node tools/serve.js",
+    "serve": "node tools/serve.js",
+    "sync-levels": "node tools/sync-levels.js",
+    "validate": "node tools/solve-levels.js",
+    "test": "node tools/solve-levels.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
