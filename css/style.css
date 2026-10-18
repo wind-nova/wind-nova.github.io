@@ -1428,7 +1428,16 @@ body.sound-muted .icon-sound-off {
 .dialog-backdrop,
 .win-overlay {
   position: fixed;
-  inset: 0;
+   top: 0;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  /* 移动端地址栏 / 页面缩放时，layout viewport 可能比可见区域高。
+     把弹层锚定在可见视口，避免底部抽屉落到屏幕外。 */
+  height: 100vh;
+  height: 100svh;
+  height: 100dvh;
+  max-height: 100dvh;
   z-index: 60;
   display: flex;
   justify-content: center;
